@@ -1,14 +1,9 @@
 import React, {useState} from "react";
-import { useSelector, useDispatch } from 'react-redux'
-import style from "styles/basic/counter.module.css";
+import style from "basic/style/counter.module.css";
 
 export default function Counter() {
-  const count = useSelector(selectCount)
-  const dispatch = useDispatch()
-  const [incrementAmount, setIncrementAmount] = useState('0')
-  const incrementValue = Number(incrementAmount) || 0
-
-  return (<>
+  const [count, setCount] = useState(0)
+  return (<><h1>카운터</h1>
     <button onClick={() => setCount(count+1)}> 더하기 </button>
     <button onClick={() => setCount(count-1)}> 빼기 </button>
     <div>{count}</div>
