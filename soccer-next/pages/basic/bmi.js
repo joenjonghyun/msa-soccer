@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React, { useState } from 'react';
 export default function Bmi() {
 
@@ -8,16 +9,25 @@ export default function Bmi() {
     const onChange = (e) => {
         e.preventDefault()
         const { value, name } = e.target
-        setInputs({ ...inputs, [name]: value })
+        setInputs({
+            ...inputs,
+            [name]: value 
+        })
     }
 
-    const onClick = async (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault()
         const res = {name, height, weight}
         alert(`BMI결과 : ${JSON.stringify(res)}`)
+        axios.post('http://localhost:5000/api/basic/bmi', inputs)
+        .then(res => {
+            alert(JSON.stringify(res.data))
+            setResult(JSON.stringify(res.data))
+        })
+        .catch(err => alert(err))
     }
     return (<div>
-        <form action="">
+        <form action="" onSubmit={handleSubmit}>
             <h1>BMI</h1>
             <div>
                 <label htmlFor="">이름</label>
@@ -31,7 +41,7 @@ export default function Bmi() {
 
                 <div>이름 : {inputs[`name`]} 키 : {inputs[`height`]} 몸무게 : {inputs[`weight`]} </div>
 
-                <input type="button" onClick={onClick} value="BMI 체크" /><br />
+                <input type="submit" value="BMI 체크" /><br />
 
             </div>
         </form>

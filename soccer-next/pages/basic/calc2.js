@@ -1,23 +1,20 @@
-import React, { useState } from "react";
-import axios from "axios";
+import axios from 'axios';
+import React,{useState} from 'react' 
 
-export default function Calc() {
+export default function Calc(){
     const [inputs, setInputs] = useState({})
-    const [result, setResult] = useState(``)
-    const { num1, num2, opcode} = inputs
-    
+    const [result, setResult] = useState('')
+    const {num1, opcode, num2} = inputs;
+
     const handleChange = (e) => {
         e.preventDefault()
-        const { value, name } = e.target
-        setInputs({
-            ...inputs,
-            [name]: value
-        })
+        const {value, name} = e.target;
+        setInputs({...inputs, [name]: value})
     }
-    const handleClick = async (e) => {
+    const handleClick = (e) => {
         e.preventDefault()
         const res = {num1, num2, opcode}
-        alert(` 계산결과 : ${JSON.stringify(res)}`)
+        alert(`결과 : ${JSON.stringify(res)}`)
         axios.post('http://localhost:5000/api/basic/calc', inputs)
         .then(res => {
             alert(JSON.stringify(res.data))
@@ -25,8 +22,8 @@ export default function Calc() {
         })
         .catch(err => alert(err))
     }
-    return (<>
-        <h1>Calc폼</h1>
+    return <>
+    <h1>Calc폼</h1>
     <form action=""> 
     <label><b>num1</b></label>
     <input name ="num1" type="text" onChange={handleChange} /><br />
@@ -51,6 +48,4 @@ export default function Calc() {
 
 
     </>
-    )
 }
-

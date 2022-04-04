@@ -1,5 +1,7 @@
 import React,{useState} from 'react'
 import style from "board/style/board-form.module.css";
+import axios from 'axios';
+
 export default function BoardhtmlForm(){
     const [inputs, setInputs] = useState({})
     const {passengerId, name, teamId, subject} = inputs
@@ -16,6 +18,11 @@ export default function BoardhtmlForm(){
         e.preventDefault()
         const res = {passengerId, name, teamId, subject}
         alert(`등록할 게시글 : ${JSON.stringify(res)}`)
+        axios.post('http://localhost:5000/api/board/write', inputs)
+        .then(res => {
+            alert(JSON.stringify(res.data))
+        }) 
+        .catch (err => alert(err))
     }
     return (<>
         <h1>게시글 등록</h1>
