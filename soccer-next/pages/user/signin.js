@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-export default function Login (){
+export default function Signin (){
    /* const [id, setId] = useState("")
     const [pw, setPw] = useState(0)
     const [name, setName] = useState("")

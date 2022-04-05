@@ -14,7 +14,6 @@ export default function Bmi() {
             [name]: value 
         })
     }
-
     const handleSubmit = async (e) => {
         e.preventDefault()
         const res = {name, height, weight}
