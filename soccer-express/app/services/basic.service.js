@@ -1,11 +1,11 @@
 exports.bmi = (payload) => {
-    const {name, height, weight} = payload
+    const {name, height, weight} = payload;
     //Obtain user inputs
     let _height=Number(height);
     let _weight=Number(weight);
 
     //Perform calculation
-    let bmi = _weight/Math.pow(_height,2);
+    let bmi = _weight*10000/Math.pow(_height,2);
 
     let output = Math.round(bmi*100)/100;
     var result = {name, height, weight}
